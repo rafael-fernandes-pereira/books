@@ -86,7 +86,7 @@ public class BookController {
     }
 
     @PostMapping("/applyNewPrice")
-    public void applyNewPrice(@RequestBody ApplyNewPriceRequest request){
+    public List<BookDto> applyNewPrice(@RequestBody ApplyNewPriceRequest request){
 
         List<BookEntity> list = new ArrayList<BookEntity>();
 
@@ -113,6 +113,8 @@ public class BookController {
         });
 
         bookRepository.saveAll(list);
+
+        return BookDto.of(list);
     }
 
 }
